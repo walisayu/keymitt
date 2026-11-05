@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<!--
+  keymitt approval action. Install with:
+    sudo install -m 644 dev.keymitt.approve.policy /usr/share/polkit-1/actions/
+  Every use of a secret then asks for your own password (auth_self) via the
+  desktop's polkit agent. Nothing is cached between uses.
+-->
+<policyconfig>
+  <vendor>keymitt</vendor>
+  <action id="dev.keymitt.approve">
+    <description>Allow an AI agent to use a secret stored in keymitt</description>
+    <message>An AI agent wants to use one of your keymitt secrets. Authenticate to allow this single use.</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_self</allow_active>
+    </defaults>
+  </action>
+</policyconfig>
